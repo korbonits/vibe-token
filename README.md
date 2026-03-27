@@ -2,7 +2,7 @@
 
 A minimal ERC-20 token deployed to the Ethereum Sepolia testnet. Built from scratch to understand how smart contracts work — no OpenZeppelin, no abstractions.
 
-**Contract address (Sepolia):** `0x4d5007d5717795331E8b21B3cd584F7BfE505926`
+**Contract address (Sepolia):** `0x2B2FD8fDdcca4247a1f0370c0F26Dae91648d2F1` ([verified on Etherscan](https://sepolia.etherscan.io/address/0x2B2FD8fDdcca4247a1f0370c0F26Dae91648d2F1#code))
 
 ## Token
 
