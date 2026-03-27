@@ -1,10 +1,23 @@
 const hre = require("hardhat");
 const { ethers } = hre;
 
-// Uniswap v3 on Sepolia
-const WETH_ADDRESS = "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14";
-const VIBE_ADDRESS = "0x2B2FD8fDdcca4247a1f0370c0F26Dae91648d2F1";
-const POSITION_MANAGER_ADDRESS = "0x1238536071E1c677A632429e3655c799b22cDA52";
+// Uniswap v3 addresses by network
+const NETWORKS = {
+  sepolia: {
+    weth:            "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14",
+    vibe:            "0x2B2FD8fDdcca4247a1f0370c0F26Dae91648d2F1",
+    positionManager: "0x1238536071E1c677A632429e3655c799b22cDA52",
+  },
+  mainnet: {
+    weth:            "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+    vibe:            "0x4d5007d5717795331e8b21b3cd584f7bfe505926",
+    positionManager: "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+  },
+};
+
+const network = hre.network.name;
+if (!NETWORKS[network]) throw new Error(`Unsupported network: ${network}`);
+const { weth: WETH_ADDRESS, vibe: VIBE_ADDRESS, positionManager: POSITION_MANAGER_ADDRESS } = NETWORKS[network];
 
 const FEE = 3000; // 0.3% fee tier
 
@@ -13,8 +26,9 @@ const TICK_LOWER = -887220;
 const TICK_UPPER = 887220;
 
 // How much liquidity to seed
-const WETH_AMOUNT = ethers.parseEther("0.005");         // 0.005 WETH
-const VIBE_AMOUNT = ethers.parseUnits("5000", 18);      // 5,000 VIBE → price: 1 WETH = 1,000,000 VIBE
+// Price: 1 WETH = 1,000,000 VIBE (0.01 WETH = 10,000 VIBE)
+const WETH_AMOUNT = ethers.parseEther("0.01");
+const VIBE_AMOUNT = ethers.parseUnits("10000", 18);
 
 const WETH_ABI = [
   "function deposit() payable",
