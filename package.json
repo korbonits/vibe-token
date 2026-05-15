@@ -4,8 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "coverage": "hardhat coverage",
+    "node": "hardhat node",
+    "clean": "hardhat clean"
   },
+  "packageManager": "pnpm@11.1.2",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/korbonits/vibe-token.git"
